@@ -1,0 +1,43 @@
+text {
+  font: 11px sans-serif;
+  fill: grey;
+}
+
+text:hover,
+.node--source,
+.node--target {
+  font-weight: bold;
+}
+
+text:hover {
+  fill: black;
+}
+
+.node--source {
+  fill: green;
+}
+
+.node--target {
+  fill: red;
+}
+
+path {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 1px;
+  opacity: 0.5;
+}
+
+.link--source, /*two hyphens [emotionless]*/
+.link--target {
+  stroke-width: 2px;
+  opacity: 1;
+}
+
+.link--source {
+  stroke: red;
+}
+
+.link--target {
+  stroke: green;
+}

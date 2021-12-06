@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <!-- Nous chargeons les fichiers CDN de Leaflet. Le CSS AVANT le JS -->
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ==" crossorigin="" />
+        <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+         <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+         <script src="https://d3js.org/d3.v4.js"></script>
+        <style type="text/css">
+            #map{ /* la carte DOIT avoir une hauteur sinon elle n'apparaît pas */
+                height:550px;
+                width: 900px;
+                margin-left: 30px;
+                position: absolute;
+                top: 80px;
+                left: 200px;
+
+            }
+        </style>
+        <link rel="stylesheet" type="text/css" href="css/stl.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+           <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+              <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+        <title>Heat map</title>
+    </head>
+    <body>
+    
+      <header>
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+       <img src="img/logo.png" alt="Logo" style="width:40px;" class="rounded-circle" alt="Cinque Terre">
+  <a class="navbar-brand" href="#">TrajectoryVis</a>
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="ind.html">
+            <h5>Accueil</h5>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">
+          <h5>  à propos  </h5>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="contact.html">
+          <h5>Contact</h5>
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<br>
+</header>
+        <div id="map"></div>
+         <!-- Ici s'affichera la carte -->
+          <div id="option" style="margin-left: 30px;
+                position: absolute;
+                top: 80px">
+        <div class="btn-group-vertical">
+            <a href="essaie.html" class="btn btn-info" role="button">OD Map</a>
+          <a href="Heat.html" class="btn btn-info" role="button">Heat Map</a>   
+          <a href="edge.html" class="btn btn-info" role="button">Edge-bundling</a>
+          <a href="graphe.html" class="btn btn-info" role="button">Arc Diagram</a>
+          <a href="3D_Graphe.html" class="btn btn-info" role="button">Graph</a>
+          <a href="HeatMatrix.html" class="btn btn-info" role="button">OD Matrix</a>
+</div>
+
+</div>
+<script src="js/option.js"></script>
+             <div id="test" style="margin-left:30px;
+            margin-top: 420px;
+            position: absolute"> 
+            <img src="img\word.png" style="width: 150px">
+            <a href="r.html" onclick="window.open(this.href); return false;"> <h4 style="margin-left: 20px">WordCloud</h4></a>
+          </div>
+
+            <div id="time"></div>
+            <div id="stat" style="margin-left: 30px; margin-top: 290px;position: absolute">
+              <img src="img\graphe.png" style="margin-left: 20px">
+              <a href="stat.html"onclick="window.open(this.href); return false;" > <h4>3D Statistique</h4></a>
+
+            </div>
+
+          <div style=" float: right; position: absolute;left: 300px;top: 50px" id="my_dataviz"></div>
+      
+      <div style="position: absolute;left: 1000px; top: 90px">
+        
+<h6>NG: Nigeria</h6>
+<h6>MA: Maroc</h6>
+<h6>ZA: South Africa</h6>
+<h6>SN: Sénégal</h6>
+<h6>KE: Kenya</h6>
+
+<h6>FR: France</h6>
+<h6>IT: Italie</h6>
+<h6>ES: Espagne</h6>
+<h6>DE: Allemagne</h6>
+<h6>CH: Suisse</h6>
+<h6>BE: Belgiaue</h6>
+<h6>AL: Albanie</h6>
+<h6>GB: Royaume-Uni</h6>
+<h6>AT: Autriche</h6>
+<h6>FI: Finlande</h6>
+
+<h6>CA: Canada</h6>
+<h6>MX: Mexique</h6>
+<h6>US: États-Unis</h6>
+<h6>GT: Guatemala</h6>
+<h6>CU: Cuba</h6>
+</div>
+<div style="position: absolute;left: 1150px; top: 90px">
+<h6>EC: Équateur</h6>
+<h6>BR: Brasil</h6>
+<h6>VE: Venezuela</h6> 
+<h6>CL: Chili</h6>
+<h6>AR: Argentine</h6>
+<h6>BO: Bolivie</h6>
+<h6>NI: Nicaragua</h6>
+
+<h6>IN: Inde</h6>
+<h6>JP: Japan </h6>
+<h6>MY: Malaisie</h6>
+<h6>LK: Sri Lanka</h6>
+<h6>IR: Iran</h6>
+<h6>AE: Emirats arabes unis</h6>
+<h6>ID: Indonésie</h6>
+<h6>TR: Turquie</h6>
+<h6>PK: Pakistan</h6>
+<h6>CN: Chine</h6>
+<h6>TH: Thaïlande</h6>
+
+<h6>AU: Australie </h6>
+      </div>
+
+
+  <script>
+
+//MATRIX
+// set the dimensions and margins of the graph
+var margin = {top: 30, right: 30, bottom: 30, left: 30},
+  width = 640 - margin.left - margin.right,
+  height = 640 - margin.top - margin.bottom;
+
+// append the svg object to the body of the page
+var svg = d3.select("#my_dataviz")
+.append("svg")
+  .attr("width", width + margin.left + margin.right)
+  .attr("height", height + margin.top + margin.bottom)
+.append("g")
+  .attr("transform",
+        "translate(" + margin.left + "," + margin.top + ")");
+
+// Labels of row and columns
+var myGroups = ["NG", "MA", "ZA", "SN", "KE", "FR", "IT", "ES", "DE", "CH", "BE", "AL", "GB", "AT", "FI", "CA", "MX", "US", "GT", "CU", "EC", "BR", "VE", "CL", "AR", "BO", "NI", "IN", "JP", "MY", "LK", "IR", "AE", "ID", "TR", "PK", "CN", "TH", "AU" ]
+var myVars = ["NG", "MA", "ZA", "SN", "KE", "FR", "IT", "ES", "DE", "CH", "BE", "AL", "GB", "AT", "FI", "CA", "MX", "US", "GT", "CU", "EC", "BR", "VE", "CL", "AR", "BO", "NI", "IN", "JP", "MY", "LK", "IR", "AE", "ID", "TR", "PK", "CN", "TH", "AU" ]
+
+// Build X scales and axis:
+var x = d3.scaleBand()
+  .range([ 0, width ])
+  .domain(myGroups)
+  .padding(0.01);
+svg.append("g")
+  .attr("transform", "translate(0," + height + ")")
+  .call(d3.axisBottom(x))
+
+// Build X scales and axis:
+var y = d3.scaleBand()
+  .range([ height, 0 ])
+  .domain(myVars)
+  .padding(0.01);
+svg.append("g")
+  .call(d3.axisLeft(y));
+
+// Build color scale
+var myColor = d3.scaleLinear()
+  .range(["white", "#69b3a2"])
+  .domain([0,5])
+
+
+
+//Read the data
+d3.csv("https://raw.githubusercontent.com/youyou15/data/master/heat_map_matrix.csv", function(data) {
+
+   var tooltip = d3.select("#my_dataviz")
+    .append("div")
+    .style("opacity", 0)
+    .attr("class", "tooltip")
+    .style("background-color", "white")
+    .style("border", "solid")
+    .style("border-width", "2px")
+    .style("border-radius", "5px")
+    .style("padding", "5px")
+
+
+  var mouseover = function(d) {
+    tooltip.style("opacity", 1)
+  }
+  var mousemove = function(d) {
+    tooltip
+      .html("The exact value of<br>this cell is: " + d.value)
+      .style("left", (d3.mouse(this)[0]+70) + "px")
+      .style("top", (d3.mouse(this)[1]) + "px")
+  }
+  var mouseleave = function(d) {
+    tooltip.style("opacity", 0)
+  }
+
+
+  svg.selectAll()
+      .data(data, function(d) {return d.group+':'+d.variable;})
+      .enter()
+      .append("rect")
+      .attr("x", function(d) { return x(d.group) })
+      .attr("y", function(d) { return y(d.variable) })
+      .attr("width", x.bandwidth() )
+      .attr("height", y.bandwidth() )
+      .style("fill", function(d) { return myColor(d.value)} )
+      .on("mouseover", mouseover)
+      .on("mousemove", mousemove)
+      .on("mouseleave", mouseleave)
+
+})
+
+
+
+
+</script>
+
+    </body>
+</html>

@@ -1,0 +1,65 @@
+/* h2{
+
+  color: red;
+  background-color: blue;
+
+}
+body{
+  background: url("https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSMSOqc4Z5F_bXJ8r9C2N8RUnlqX1MicKVTu6lApiC784RZrmW3&usqp=CAU") no-repeat;
+  background-size: 1200px;
+} */
+header div{
+  display: inline-block;
+  /* width: 30%; */
+}
+header div img#logo{
+  width: 50px;
+padding-top: 20px;
+}
+header div.tetegauche{
+  padding-left: 20px;
+}
+header div.tetedroite{
+  padding-left: 20px;
+}
+
+div#Contenu div{
+            display: inline-block;
+}
+div#Contenu div.leftbox{
+
+
+}
+div#Contenu div.rightbox{
+
+
+}
+nav.nav1 li.btn {
+  display: inline-block;
+  list-style-type: none;
+}
+nav.nav1  li.btn a {
+  color: black;
+  background-color: #CBD5B2;
+  text-decoration: none;
+  padding: 15px;
+
+
+}
+nav.nav1  li.btn:hover a {
+  color: #CBD5B2;
+  background-color: black;
+  transition: 1.5s all ;
+}
+
+footer{
+  background-color: #9EAE78;
+  vertical-align: bottom;
+
+}
+footer div{
+  padding-left: 450px;
+}
+header{
+
+}

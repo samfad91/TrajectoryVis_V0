@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Heatmap</title>
+   <style type="text/css">
+            #map{ /* la carte DOIT avoir une hauteur sinon elle n'apparaît pas */
+                height:550px;
+                width: 900px;
+                margin-left: 30px;
+                position: absolute;
+                top: 80px;
+                left: 200px;
+
+            }
+        </style>
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+
+    <link rel="stylesheet" type="text/css" href="css/stl.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+    <script src="js/heatmap.js"></script>
+    <script src="js/leaflet-heatmap.js"></script>
+  </head>
+  <body>
+
+        <header>
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+       <img src="img/logo.png" alt="Logo" style="width:40px;" class="rounded-circle" alt="Cinque Terre">
+  <a class="navbar-brand" href="#">TrajectoryVis</a>
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="index.html">
+            <h5>Home</h5>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="apropos.html">
+          <h5>  About  </h5>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="contact.html">
+          <h5>Contact</h5>
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<br>
+</header>
+<div id="option" style="margin-left: 30px;
+                position: absolute;
+                top: 80px">
+        <div class="btn-group-vertical">
+            <a href="essaie.html" class="btn btn-info" role="button">OD Map</a>
+          <a href="Heat.html" class="btn btn-info" role="button">Heat Map</a>   
+          <a href="edge.html" class="btn btn-info" role="button">Edge-bundling</a>
+          <a href="graphe.html" class="btn btn-info" role="button">Arc Diagram</a>
+          <a href="3D_Graphe.html" class="btn btn-info" role="button">Graph</a>
+          <a href="HeatMatrix.html" class="btn btn-info" role="button">OD Matrix</a>
+          
+</div>
+
+</div>
+
+<div id="test" style="margin-left:30px;
+            margin-top: 420px;
+            position: absolute"> 
+            <img src="img\word.png" style="width: 150px">
+            <a href="r.html" onclick="window.open(this.href); return false;"> <h4 style="margin-left: 20px">WordCloud</h4></a>
+          </div>
+
+            <div id="time"></div>
+            <div id="stat" style="margin-left: 30px; margin-top: 290px;position: absolute">
+              <img src="img\graphe.png" style="margin-left: 20px">
+              <a href="stat.html"onclick="window.open(this.href); return false;" > <h4>3D Statistics</h4></a>
+
+            </div>
+            <div style="top: 90px;position: absolute;right: 50px">
+<button class="btn btn-info"><i class="fa fa-download"></i> <a class="btn btn-info" href="js/leaflet.heat.js" download="">Code</a></button>
+ </div> 
+ <div style="top: 180px;position: absolute; width: 150px;height: 150px;left: 1140px">
+        <ul>
+          <li>
+      <p>Heat map shows the density of trajectory flows in space.</p>
+      </li>
+       <li>
+       <p>Blue color means the least dense point. </p> 
+       </li>
+       <li>
+       <p>Red color means the densest point.</p>
+      </li>
+      </ul>
+        </div>
+   <div id="map"></div>
+
+    <script>
+      window.onload = function() {
+
+        var testData = {
+          max: 8,
+          data: [{lat:58.111966, lng: -102.0323814, count: 2},{lat:30.7472492, lng: -109.0544217, count: 1},{lat:38.8954381, lng: -77.0312812, count: 2},{lat:38.996708, lng: -77.0252187, count: 2},{lat:-25.0479437, lng: 134.0033471, count: 1},{lat:46.2035168, lng: 6.1400456, count: 1},{lat:46.2035168, lng: 6.1400456, count: 1},{lat:-1.5193273, lng: -78.3567437, count: 2},{lat:40.729674, lng: -74.00662, count: 2},{lat:37.1337418, lng: -120.2864048, count: 1},{lat:44.0123665, lng: -79.3220895, count: 1},{lat:32.059897, lng: -6.498269, count: 1},{lat:40.0675447, lng: -6.6573987, count: 1},{lat:48.1382614, lng: 11.5845093, count: 2},{lat:40.780881, lng: -73.9595061, count: 2},{lat:37.9947901558779, lng: -122.353659874941, count: 2},{lat:26.837231, lng: 80.9241185, count: 1},{lat:30.4307918, lng: -87.2328198, count: 1},{lat:39.953348, lng: -75.163353, count: 1},{lat:29.3254182, lng: -100.9327749, count: 1},{lat:9.5532358, lng: 8.0748501, count: 1},{lat:9.077068, lng: 7.3906911, count: 1},{lat:46.818188, lng: 8.227512, count: 1},{lat:47.369019, lng: 8.538030, count: 1},{lat:47.045540, lng: 8.308010, count: 1},{lat:40.945820, lng: -73.022263, count: 2},{lat:40.7648, lng: -73.9808, count: 2},{lat:33.211386, lng: -83.302271, count: 2},{lat:38.993579, lng: -80.230956, count: 2},{lat:41.473305, lng: -83.691504, count: 2},{lat:44.975469, lng: -93.272475, count: 2},{lat:53.550572, lng: -113.500995, count: 2},{lat:38.911147, lng: -77.029007, count: 1},{lat:54.398205, lng: -3.481980, count: 1},{lat:35.707759, lng: 139.720257, count: 1},{lat:35.713214, lng: 139.707632, count: 1},{lat:40.410427, lng: -3.703408, count: 1},{lat:41.081506, lng: 19.988035, count: 2},{lat:40.006095, lng: -75.124906, count: 2},{lat:27.794687, lng: -81.336246, count: 2},{lat:33.759071, lng: -84.372551, count: 1},{lat:6.562361, lng: 3.272959, count: 2},{lat:38.359720, lng: -0.477675, count: 2},{lat:34.023421, lng: -118.475091, count: 2},{lat:30.427541, lng: -97.908784, count: 2},{lat:40.777563, lng: -111.906763, count: 2},{lat:37.121532, lng: 14.541155, count: 2},{lat:40.411059, lng: -3.704976, count: 1},{lat:49.145511, lng: 0.902427, count: 1},{lat:38.896577, lng: -77.049116, count: 1},{lat:44.291898, lng: -105.501742, count: 1},{lat:37.414284, lng: -79.164776, count: 1},{lat:6.157203, lng: 100.348508, count: 1},{lat:2.952418, lng: 101.708458, count: 1},{lat:43.700784, lng: -79.378755, count: 1},{lat:42.336602, lng: -71.078784, count: 2},{lat:51.539156, lng: -86.551794, count: 1},{lat:41.889645, lng: -87.661968, count: 1},{lat:42.285746, lng: -83.744559, count: 1},{lat:7.644893, lng: 80.515346, count: 2},{lat:61.171094, lng: -134.822759, count: 1},{lat:44.973490, lng: -93.253532, count: 1},{lat:35.500214, lng: -97.532802, count: 1},{lat:24.464097, lng: 54.362188, count: 2},{lat:38.996030, lng: -77.018017, count: 1},{lat:42.688441, lng: -2.944504, count: 1},{lat:38.880796, lng: -77.106965, count: 2},{lat:38.907206, lng: -77.012195, count: 1},{lat:34.211943, lng: -77.883746, count: 1},{lat:35.687253, lng: 51.397872, count: 1},{lat:50.848668, lng: 4.354445, count: 1},{lat:-1.257069, lng: -78.628322, count: 1},{lat:40.013458, lng: -74.146765, count: 2},{lat:39.511049, lng: -74.891753, count: 1},{lat:37.779119, lng: -122.436229, count: 1},{lat:36.533731, lng: -119.515484, count: 2},{lat:57.910352, lng: -101.567469, count: 1},{lat:41.120886, lng: 1.244591, count: 1},{lat:48.859741, lng: 2.351521, count: 1},{lat:10.245555, lng: -67.611594, count: 1},{lat:-26.203545, lng: 28.040021, count: 1},{lat:43.587659, lng: -79.643638, count: 1},{lat:43.694826, lng: -79.447419, count: 2},{lat:48.859741, lng: 2.351521, count: 2},{lat:42.687340, lng: -2.947590, count: 2},{lat:38.890759, lng: -77.084747, count: 1},{lat:2.025869, lng: 103.206596, count: 2},{lat:-22.907370, lng: -47.062901, count: 1},{lat:37.974571, lng: -122.531868, count: 2},{lat:50.975364, lng: 0.014797, count: 1},{lat:4.866097, lng: 100.782731, count: 1},{lat:25.353424, lng: 55.408285, count: 1},{lat:31.529469, lng: 74.359062, count: 1},{lat:-27.371430, lng: -70.325515, count: 2},{lat:51.494121, lng: -0.127039, count: 1},{lat:14.747088, lng: -17.524029, count: 1},{lat:41.003946, lng: 28.874808, count: 2},{lat:13.092857, lng: 80.237795, count: 2},{lat:17.399049, lng: 78.424470, count: 1},{lat:-42.098391, lng: -72.415715, count: 1},{lat:-7.385203, lng: 109.360822, count: 1},{lat:38.639610, lng: -90.252399, count: 1},{lat:41.332029, lng: -74.354656, count: 2},{lat:41.416336, lng: 2.162490, count: 3},{lat:46.206687, lng: 6.142886, count: 1},{lat:49.071846, lng: 2.155016, count: 3},{lat:40.264229, lng: -76.884204, count: 2},{lat:38.911147, lng: -77.029007, count: 1},{lat:29.3254182, lng: -100.9327749, count: 1},{lat:45.058361, lng: -93.162556, count: 1},{lat:41.669893, lng: -86.256781, count: 2},{lat:19.102803, lng: 72.853666, count: 1},{lat:-9.633813, lng: -35.705919, count: 2},{lat:43.700784, lng: -79.378755, count: 2},{lat:54.599176, lng: -5.972350, count: 1},{lat:46.498024, lng: -81.071036, count: 1},{lat:15.679645, lng: -90.326631, count: 1},{lat:19.999045, lng: 77.989564, count: 1},{lat:39.320753, lng: -76.615701, count: 1},{lat:-35.705022, lng: -65.678347, count: 4},{lat:40.646112, lng: -73.893206, count: 2},{lat:51.705536, lng: 8.770801, count: 1},{lat:39.467700, lng: -0.376536, count: 1},{lat:53.521442, lng: -2.633890, count: 1},{lat:39.866499, lng: -4.028038, count: 1},{lat:17.387254, lng: 78.429963, count: 1},{lat:12.987841, lng: -85.285398, count: 1},{lat:-23.537451, lng: -46.701095, count: 1},{lat:-6.194915, lng: 106.849417, count: 1},{lat:31.549366, lng: 74.372793, count: 3},{lat:40.376042, lng: -3.744876, count: 1},{lat:40.247003, lng: 126.996683, count: 1},{lat:20.112168, lng: -98.764334, count: 1},{lat:50.737689, lng: 1.598409, count: 1},{lat:-3.557111, lng: -80.068102, count: 1},{lat:39.914324, lng: 116.387803, count: 1},{lat:20.962420, lng: -76.957668, count: 1},{lat:-16.218173, lng: -65.260733, count: 1},{lat:48.202755, lng: 16.391037, count: 1},{lat:33.492572, lng: -89.739190, count: 2},{lat:28.621829, lng: 77.211706, count: 2},{lat:51.446585, lng: -2.586606, count: 2},{lat:42.305934, lng: -71.095028, count: 2},{lat:20.112168, lng: -98.768454, count: 1},{lat:40.629186, lng: -74.595122, count: 2},{lat:46.223911, lng: 6.147864, count: 1},{lat:13.792470, lng: 100.613829, count: 2},{lat:51.450440, lng: 0.141266, count: 1},{lat:60.174818, lng: 24.937629, count: 1},{lat:-1.300459, lng: 36.823350, count: 1},{lat:22.534767, lng: -79.952849, count: 2},{lat:45.776177, lng: 3.190132, count: 2},{lat:44.773581, lng: 1.722354, count: 1},{lat:39.682402, lng: 116.208077, count: 1},{lat:40.670315, lng: -73.982739, count: 1},{lat:-26.125570, lng: 27.971183, count: 1},{lat:-31.954976, lng: 115.865212, count: 1}]
+        };
+
+        var baseLayer = L.tileLayer(
+          'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+            attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
+            maxZoom: 18
+          }
+        );
+
+        var cfg = {
+          // radius should be small ONLY if scaleRadius is true (or small radius is intended)
+          "radius": 3,
+          "maxOpacity": .8, 
+          // scales the radius based on map zoom
+          "scaleRadius": true, 
+          // if set to false the heatmap uses the global maximum for colorization
+          // if activated: uses the data maximum within the current map boundaries 
+          //   (there will always be a red spot with useLocalExtremas true)
+          "useLocalExtrema": true,
+          // which field name in your data represents the latitude - default "lat"
+          latField: 'lat',
+          // which field name in your data represents the longitude - default "lng"
+          lngField: 'lng',
+          // which field name in your data represents the data value - default "value"
+          valueField: 'count'
+        };
+
+
+        var heatmapLayer = new HeatmapOverlay(cfg);
+
+        var map = new L.Map('map', {
+          center: new L.LatLng(25.6586, -80.3568),
+          zoom: 4,
+          layers: [baseLayer, heatmapLayer]
+        });
+
+        heatmapLayer.setData(testData);
+
+        // make accessible for debugging
+        layer = heatmapLayer;
+      };
+    </script>
+  </body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <title>AFRICA</title>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://x3dom.org/release/x3dom.js"></script>
+    <link rel="stylesheet" href="https://x3dom.org/release/x3dom.css" />
+    <link rel="stylesheet" type="text/css" href="css/stat.css">
+    <script src="https://raw.githack.com/jamesleesaunders/d3-x3d/master/dist/d3-x3d.js"></script>
+  </head>
+  
+  <body>
+    <h1 style="margin-left: 490px">STATISTIcs 3D </h1>
+     <h3 style="margin-left: 490px;color:red">Histogram 3D AFRICA </h3>
+    <div id="chart1" style="margin-left: 400px"></div>
+    <div style="position: absolute; margin-left: 300px">
+     <h4> Explanation: </h4>
+      <p> This 3D histogram of the continent of AFRICA is represented on three axes (x, y, z), </p>
+      <p> such as: X: the place; Y: the number of tweets; Z: time. </p>
+      <p> On the X axis we represent the countries of the continent of AFRICA; that appear in the tabs. </p>
+      <p> We can see quite simply, that the quantity of tweets located in </p>
+      <p> Nigeria is highest in the period of May 2020. </p>
+
+    </div>
+
+    
+    <div style="margin-top: 350px">
+<div class="btn-group" style="width:100%">
+  <button style="width:14%"><a href="stat.html">GLOBAL</a> </button>
+  <button style="width:14%"><a href="Afrique.html">AFRICA</a> </button>
+  <button style="width:14%"><a href="europe.html">EUROPE</a></button>
+  <button style="width:15%"><a href="na.html">NORTH AMERICA</a></button>
+  <button style="width:15%"><a href="sa.html">SOUTH AMERICA</a></button>
+  <button style="width:14%"><a href="asie.html">ASIA</a></button>
+  <button style="width:14%"><a href="australie.html">AUSTRALIA</a></button>
+</div>
+</div>
+    
+     
+
+    <script>
+      // Select chartholder
+      
+
+//AFRIQUE
+
+var chart1 = d3.select("#chart1");
+var myData1 = [
+        {
+          key: "Mai 2020",
+          values: [
+            { key: "Nigeria", value: 3 },
+            { key: "Maroc", value: 1 },
+            { key: "South Africa", value: 1 },
+            { key: "Sénégal", value: 0 },
+            { key: "Kenya", value: 0 }
+            
+          ]
+
+        },
+        {
+          key: "Juin 2020",
+          values: [
+            { key: "Nigeria", value: 0 },
+            { key: "Maroc", value: 0 },
+            { key: "South Africa", value: 1 },
+            { key: "Sénégal", value: 1 },
+            { key: "Kenya", value: 1 }
+            
+          ]
+
+        }
+
+      ];
+
+  var myChart1 = d3.x3d.chart.barChartMultiSeries();
+
+      // Attach chart and data to the chartholder
+      chart1
+        .datum(myData1)
+        .call(myChart1);
+
+    </script> 
+  </body>
+  
+</html>

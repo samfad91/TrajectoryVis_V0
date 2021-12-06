@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <title>Statistics</title>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://x3dom.org/release/x3dom.js"></script>
+    <link rel="stylesheet" href="https://x3dom.org/release/x3dom.css" />
+    <link rel="stylesheet" type="text/css" href="css/stat.css">
+    <script src="https://raw.githack.com/jamesleesaunders/d3-x3d/master/dist/d3-x3d.js"></script>
+  </head>
+  
+  <body>
+    <h1 style="margin-left: 490px">STATISTICS 3D </h1>
+     <h3 style="margin-left: 490px;color:red">3D histogram of the continents </h3>
+    <div id="chartholder" style="margin-left: 400px"></div>
+    <div style="position: absolute; margin-left: 300px">
+     <h4> Explanation: </h4>
+      <p> This 3D histogram of the continents is represented on three axes (x, y, z), </p>
+      <p> such as: X: the place; Y: the number of tweets; Z: time. </p>
+      <p> in this first 3D histogram we have arranged in relation to the continent, that is to say we have represented, the quantity of tweets (localized) </p>
+      <p> in the 6 existing continents, in the two time periods May, and June 2020. </p>
+      <p> We can see quite simply, that the quantity of tweets located in the continent </p>
+      <p> North America is highest in the period of May 2020, and Europe and North America in June 2020. </p>
+     <h3 style="margin-left: 190px;color:red">3D histograms for each continent </h3>
+    </div>
+    <div style="margin-top: 400px">
+<div class="btn-group" style="width:100%">
+  <button style="width:16.5%"><a href="Afrique.html">AFRICA</a> </button>
+  <button style="width:16.5%"><a href="europe.html">EUROPE</a></button>
+  <button style="width:17%"><a href="na.html">NORTH AMERICA</a></button>
+  <button style="width:17%"><a href="sa.html">SOUTH AMERICA</a></button>
+  <button style="width:16.5%"><a href="asie.html">ASIA</a></button>
+  <button style="width:16.5%"><a href="australie.html">AUSTRALIA</a></button>
+</div>
+</div>
+    <div id="chart1" style="margin-left: 800px"></div>
+     
+
+    <script>
+      // Select chartholder
+      var chartHolder = d3.select("#chartholder");
+
+      // Generate some data
+
+      var myData = [
+        {
+          key: "Mai 2020",
+          values: [
+            { key: "Afrique", value: 5 },
+            { key: "Europe", value: 17 },
+            { key: "Nord amérique", value: 48 },
+            { key: "Sud amérique", value: 3 },
+            { key: "Asie", value: 8 },
+            { key: "Australie", value: 1 }
+            
+          ]
+
+        },
+        {
+          key: "Juin 2020",
+          values: [
+            { key: "Afrique", value: 3 },
+            { key: "Europe", value: 21 },
+            { key: "Nord amérique", value: 21 },
+            { key: "Sud amérique", value: 9 },
+            { key: "Asie", value: 19 },
+            { key: "Australie", value: 1 }
+            
+          ]
+
+        }
+
+      ];
+
+      // Declare the chart component
+      var myChart = d3.x3d.chart.barChartMultiSeries();
+
+      // Attach chart and data to the chartholder
+      chartHolder
+        .datum(myData)
+        .call(myChart);
+/*
+//AFRIQUE
+
+var chart1 = d3.select("#chart1");
+var myData1 = [
+        {
+          key: "Mai 2020",
+          values: [
+            { key: "Nigeria", value: 3 },
+            { key: "Maroc", value: 1 },
+            { key: "South Africa", value: 1 },
+            { key: "Sénégal", value: 0 },
+            { key: "Kenya", value: 0 }
+            
+          ]
+
+        },
+        {
+          key: "Juin 2020",
+          values: [
+            { key: "Nigeria", value: 0 },
+            { key: "Maroc", value: 0 },
+            { key: "South Africa", value: 1 },
+            { key: "Sénégal", value: 1 },
+            { key: "Kenya", value: 1 }
+            
+          ]
+
+        }
+
+      ];
+
+  var myChart1 = d3.x3d.chart.barChartMultiSeries();
+
+      // Attach chart and data to the chartholder
+      chart1
+        .datum(myData1)
+        .call(myChart1);
+
+
+//EUROPE
+
+var chart2 = d3.select("#chart2");
+var myData2 = [
+        {
+          key: "Mai 2020",
+          values: [
+            { key: "FR", value: 2 },
+            { key: "IT", value: 1 },
+            { key: "ES", value: 7 },
+            { key: "DE", value: 1 },
+            { key: "CH", value: 4 },
+            { key: "BE", value: 1 },
+            { key: "AL", value: 1 },
+            { key: "GB", value: 1 },
+            { key: "AT", value: 0 },
+            { key: "FI", value: 0 }
+            
+          ]
+
+        },
+        {
+          key: "Juin 2020",
+          values: [
+            { key: "FR", value: 4 },
+            { key: "IT", value: 1 },
+            { key: "ES", value: 5 },
+            { key: "DE", value: 1 },
+            { key: "CH", value: 2 },
+            { key: "BE", value: 0 },
+            { key: "AL", value: 0 },
+            { key: "GB", value: 6 },
+            { key: "AT", value: 1 },
+            { key: "FI", value: 1 }
+            
+          ]
+
+        }
+
+      ];
+
+  var myChart2 = d3.x3d.chart.barChartMultiSeries();
+
+      // Attach chart and data to the chartholder
+      chart2
+        .datum(myData2)
+        .call(myChart2);
+
+//AMERIQUE DE NORD
+
+var chart3 = d3.select("#chart3");
+var myData3 = [
+        {
+          key: "Mai 2020",
+          values: [
+            { key: "Canada", value: 9 },
+            { key: "Mexique", value: 2 },
+            { key: "États-Unis", value: 37 },
+            { key: "Guatemala", value: 0 },
+            { key: "Cuba", value: 0 }
+            
+          ]
+
+        },
+        {
+          key: "Juin 2020",
+           values: [
+            { key: "Canada", value: 1 },
+            { key: "Mexique", value: 3 },
+            { key: "États-Unis", value: 14 },
+            { key: "Guatemala", value: 1 },
+            { key: "Cuba", value: 2 }
+          ]
+
+        }
+
+      ];
+
+  var myChart3 = d3.x3d.chart.barChartMultiSeries();
+
+      // Attach chart and data to the chartholder
+      chart3
+        .datum(myData3)
+        .call(myChart3);
+//AMERIQUE DE SUD
+
+var chart4 = d3.select("#chart4");
+var myData4 = [
+        {
+          key: "Mai 2020",
+          values: [
+            { key: "Équateur", value: 2 },
+            { key: "Brasil", value: 0 },
+            { key: "Venezuela", value: 1 },
+            { key: "Chili", value: 0 },
+            { key: "Argentine", value: 0 },
+            { key: "Bolivie", value: 0 },
+            { key: "Nicaragua", value: 0 }
+            
+          ]
+
+        },
+        {
+          key: "Juin 2020",
+           values: [
+            { key: "Équateur", value: 1 },
+            { key: "Brasil", value: 3 },
+            { key: "Venezuela", value: 0 },
+            { key: "Chili", value: 2 },
+            { key: "Argentine", value: 1 },
+            { key: "Bolivie", value: 1 },
+            { key: "Nicaragua", value: 1 }
+            
+          ]
+
+        }
+
+      ];
+
+  var myChart4 = d3.x3d.chart.barChartMultiSeries();
+
+      // Attach chart and data to the chartholder
+      chart4
+        .datum(myData4)
+        .call(myChart4);
+
+//ASIE
+
+var chart5 = d3.select("#chart5");
+var myData5 = [
+        {
+          key: "Mai 2020",
+          values: [
+            { key: "IN", value: 1 },
+            { key: "JP", value: 2 },
+            { key: "MY", value: 2 },
+            { key: "LK", value: 1 },
+            { key: "IR", value: 1 },
+            { key: "AE", value: 1 },
+            { key: "ID", value: 0 },
+            { key: "TR", value: 0 },
+            { key: "PK", value: 0 },
+            { key: "KP", value: 0 },
+            { key: "CN", value: 0 },
+            { key: "TH", value: 0 }
+            
+          ]
+
+        },
+        {
+          key: "Juin 2020",
+           values: [
+            { key: "IN", value: 6 },
+            { key: "JP", value: 1 },
+            { key: "MY", value: 2 },
+            { key: "LK", value: 0 },
+            { key: "IR", value: 0 },
+            { key: "AE", value: 1 },
+            { key: "ID", value: 2 },
+            { key: "TR", value: 1 },
+            { key: "PK", value: 2 },
+            { key: "KP", value: 1 },
+            { key: "CN", value: 2 },
+            { key: "TH", value: 1 }
+            
+          ]
+
+        }
+
+      ];
+
+  var myChart5 = d3.x3d.chart.barChartMultiSeries();
+
+      // Attach chart and data to the chartholder
+      chart5
+        .datum(myData5)
+        .call(myChart5);*/
+
+    </script> 
+  </body>
+  
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <!-- Nous chargeons les fichiers CDN de Leaflet. Le CSS AVANT le JS -->
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ==" crossorigin="" />
+        <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+         <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        </style>
+        <link rel="stylesheet" type="text/css" href="css/stl.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+           <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+              <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+            <script src="https://unpkg.com/3d-force-graph@1.66.4/dist/3d-force-graph.min.js"></script>
+  <!--<script src="../../dist/3d-force-graph.js"></script>-->
+        <title>Graph</title>
+    </head>
+    <body>
+    
+      <header>
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+       <img src="img/logo.png" alt="Logo" style="width:40px;" class="rounded-circle" alt="Cinque Terre">
+  <a class="navbar-brand" href="#">TrajectoryVis</a>
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="index.html">
+            <h5>Home</h5>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="apropos.html">
+          <h5>  About  </h5>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="contact.html">
+          <h5>Contact</h5>
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<br>
+</header>  
+
+       
+
+
+
+
+<div id="3d-graph" style="top: 160px;position: absolute;width: 100%"></div>
+
+<div id="option" style="margin-top: 750px">
+  <div class="btn-group" style="width: 100%">
+    
+    <button class="btn btn-info" style="width: 16%"><a href="essaie.html" class="btn btn-info" role="button">OD Map</a></button>
+    <button class="btn btn-info" style="width: 17%"> <a href="Heat.html" class="btn btn-info" role="button">Heat Map</a></button>
+    <button class="btn btn-info" style="width: 17%"><a href="edge.html" class="btn btn-info" role="button">Edge-bundling</a></button>
+    <button class="btn btn-info" style="width: 17%"><a href="graphe.html" class="btn btn-info" role="button">Arc Diagram</a></button>
+    <button class="btn btn-info" style="width: 17%"><a href="3D_Graphe.html" class="btn btn-info" role="button">Graph</a></button>
+    <button class="btn btn-info" style="width: 16%"><a href="HeatMatrix.html" class="btn btn-info" role="button">OD Matrix</a></button>
+    
+    </div>
+</div>
+<div style="top: 90px;position: absolute">
+  <img src="img/continents.png" style="width: 360px;margin-left: 15px">
+</div>
+<div style="top: 460px;position: absolute; right: 50px">
+  <button class="btn btn-info"><a href="3D_Graphe.html" class="btn btn-info" role="button">Graph</a></button>
+</div>
+ <div style="top: 80px;position: absolute;right: 50px">
+<button class="btn btn-info"><i class="fa fa-download"></i> <a class="btn btn-info" href="js/graphe3d.js" download="">Code</a></button>
+ </div> 
+
+<script>
+    const Graph = ForceGraph3D()
+      (document.getElementById('3d-graph'))
+      //load data file
+        .jsonUrl('https://raw.githubusercontent.com/youyou15/data/master/simple4.json')
+        .nodeLabel('id')
+        .nodeAutoColorBy('group');
+  </script>
+
+       
+    </body>
+</html>
