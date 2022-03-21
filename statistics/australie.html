@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <title>AUSTRALIA</title>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://x3dom.org/release/x3dom.js"></script>
+    <link rel="stylesheet" href="https://x3dom.org/release/x3dom.css" />
+    <link rel="stylesheet" type="text/css" href="css/stat.css">
+    <script src="https://raw.githack.com/jamesleesaunders/d3-x3d/master/dist/d3-x3d.js"></script>
+  </head>
+  
+  <body>
+    <h1 style="margin-left: 490px">STATISTICS 3D </h1>
+     <h3 style="margin-left: 490px;color:red">Histogram 3D AUSTRALIA </h3>
+    <div id="chart6" style="margin-left: 400px"></div>
+    <div style="position: absolute; margin-left: 300px">
+  <h4> Explanation: </h4>
+      <p> This 3D histogram of the continents is represented on three axes (x, y, z), </p>
+      <p> such as: X: the location; y: the number of tweets; z: time. </p>
+      <p> in this first 3D Histogram we have to arrange in relation to the continent, that is to say we have represented, the quantity of tweets (localized) </p>
+      <p> in the 6 existing continents, in the two time periods May, and June 2020. </p>
+      <p> We can see quite simply, that the quantity of tweets located in the continent </p>
+      <p> North America is highest in the period of May 2020, and Europe and North America in June 2020. </p>
+
+    </div>
+
+    
+    <div style="margin-top: 350px">
+<div class="btn-group" style="width:100%">
+  <button style="width:14%"><a href="/statistics/stat.html">GLOBAL</a> </button>
+  <button style="width:14%"><a href="Afrique.html">AFRICA</a> </button>
+  <button style="width:14%"><a href="europe.html">EUROPE</a></button>
+  <button style="width:15%"><a href="na.html">NORTH AMERICA</a></button>
+  <button style="width:15%"><a href="sa.html">SOUTH AMERICA</a></button>
+  <button style="width:14%"><a href="asie.html">ASIA</a></button>
+  <button style="width:14%"><a href="australie.html">AUSTRALIA</a></button>
+</div>
+</div>
+    
+     
+
+    <script>
+var chart6 = d3.select("#chart6");
+var myData6 = [
+        {
+          key: "Mai 2020",
+          values: [
+            { key: "Ghan", value: 1 },
+            { key: "Perth", value: 0 }
+            
+            
+          ]
+
+        },
+        {
+          key: "Juin 2020",
+           values: [
+            { key: "Ghan", value: 0 },
+            { key: "Perth", value: 1 }
+             
+          ]
+
+        }
+
+      ];
+
+  var myChart6 = d3.x3d.chart.barChartMultiSeries();
+
+      // Attach chart and data to the chartholder
+      chart6
+        .datum(myData6)
+        .call(myChart6);
+    </script> 
+  </body>
+  
+</html>

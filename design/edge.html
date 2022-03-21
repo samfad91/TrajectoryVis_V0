@@ -8,13 +8,25 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
          <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <style type="text/css">
+            #maCarte{ /* la carte DOIT avoir une hauteur sinon elle n'apparaît pas */
+                height:550px;
+                width: 900px;
+                margin-left: 30px;
+                position: absolute;
+                top: 80px;
+                left: 200px;
+
+            }
         </style>
+        <link rel="stylesheet" type="text/css" media="screen" href="/css/main.css" />
+         <script src="https://d3js.org/d3.v5.min.js"></script>
         <link rel="stylesheet" type="text/css" href="/css/stl.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
               <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-        <title>Map</title>
+        <title>Carte</title>
     </head>
     <body>
     
@@ -44,88 +56,64 @@
 </nav>
 <br>
 </header>
-      
+        <div id="maCarte"></div>
+         <!-- Ici s'affichera la carte -->
           <div id="option" style="margin-left: 30px;
                 position: absolute;
                 top: 80px">
         <div class="btn-group-vertical">
-            <a href="/design/essaie.html" class="btn btn-info" role="button">OD Map</a>
+          <a href="/design/essaie.html" class="btn btn-info" role="button">OD Map</a>
           <a href="/design/Heat.html" class="btn btn-info" role="button">Heat Map</a>   
-          <a href="/design/HeatMatrix.html" class="btn btn-info" role="button">OD Matrix</a>
-          <a href="/design/graphe.html" class="btn btn-info" role="button">Arc Diagram</a>
           <a href="/design/edge.html" class="btn btn-info" role="button">Edge-bundling</a>
+          <a href="/design/graphe.html" class="btn btn-info" role="button">Arc Diagram</a>
           <a href="/design/3D_Graphe.html" class="btn btn-info" role="button">Graph</a>
-       
+          <a href="/design/HeatMatrix.html" class="btn btn-info" role="button">OD Matrix</a>
           
 </div>
 
 </div>
-            <div id="test" style="margin-left:30px;
+
+<div id="indice" style="margin-left:1150px;
+            position: absolute;
+            top: 280px"> 
+            <img src="/img/edj.png">
+          </div>
+<div style="margin-left: 1100px; top: 380px;position: absolute;width: 150px;height: 150px">
+  <ul><li>
+    <p>The links (trajectories) represented in this visualization are grouped by country</p>
+  </li></ul>
+  
+</div>
+<div style="top: 590px;position: absolute;left: 1160px">
+        <a href="https://lliquid.github.io/homepage/files/ts13_edgebundle.pdf"onclick="window.open(this.href); return false;" > <h6>Explanatory link</h6></a>
+       </div>
+             <div id="test" style="margin-left:30px;
             margin-top: 420px;
             position: absolute"> 
             <img src="/img/word.png" style="width: 150px">
             <a href="/design/wordcloud/r.html" onclick="window.open(this.href); return false;"> <h4 style="margin-left: 20px">WordCloud</h4></a>
           </div>
 
-            <div id="time"></div> 
+            <div id="time"></div>
             <div id="stat" style="margin-left: 30px; margin-top: 290px;position: absolute">
               <img src="/img/graphe.png" style="margin-left: 20px">
-              <a href="statistics/stat.html"onclick="window.open(this.href); return false;" > <h4>3D Statistics</h4></a>
+              <a href="/statistics/stat.html"onclick="window.open(this.href); return false;" > <h4>3D Statistics</h4></a>
 
             </div>
-<div style=" margin-left: 30px;
-                position: absolute;
-                top: 80px;
-                left: 200px;">
-  <h3>The data used in these visualizations are the trajectories of the hashtags (# Covid19 and #Corona) extracted from the tweets during the period May and June 2020</h3>
-</div>
-<div style="left: 670px;top: 170px;position: absolute;">
-<button class="btn btn-info"><i class="fa fa-download"></i> <a class="btn btn-info" href="/downloadData/targ.txt" download="">Data</a></button>
- </div>  
+ 
+         <div style="top: 90px;position: absolute;right: 50px">
+              <button class="btn btn-info"><i class="fa fa-download"></i> <a class="btn btn-info" href="/js/main.js" download="">Code</a></button>
+         </div>
+          
 
-  <div id="maCarte" style=" height:450px;
-                width: 800px;
-                margin-left: 30px;
-                position: absolute;
-                top: 240px;
-                left: 280px;">  
-    </div>
- <script type="text/javascript">
-            // On initialise la latitude et la longitude
-            
-            var lat2= 36.724772;  //Tizi OUZOU
-            var lon2 = 4.039124;
-            
+        <!-- Fichiers Javascript -->
+        <body>
+  <h3 style="margin-left: 450px; position: absolute">Hierarchical Edge Bundling</h3>
+ <div style="position: absolute;left: 300px;top: 130px">
 
-            var carte = null;
-
-            // Fonction d'initialisation de la carte
-            function initMap() {
-                // Créer l'objet "carte" et l'insèrer dans l'élément HTML qui a l'ID "macarte"
-                carte = L.map('maCarte').setView([lat2, lon2], 9);
-                // Leaflet ne récupère pas les cartes (tiles) sur un serveur par défaut. Nous devons lui préciser où nous souhaitons les récupérer. Ici, openstreetmap.fr
-                L.tileLayer('https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', {
-                    // le lien vers la source des données
-                    attribution: 'données © <a href="//osm.org/copyright">OpenStreetMap</a>/ODbL - rendu <a href="//openstreetmap.fr">OSM France</a>',
-                    minZoom: 1,
-                    maxZoom: 20
-                }).addTo(carte);
-
-               var popup = L.popup();
-
-               function onMapClick(e) {
-                 popup
-                 .setLatLng(e.latlng)
-                 .setContent("You clicked the map at " + e.latlng.toString())
-                 .openOn(carte);
-                }
-
-                carte.on('click', onMapClick);
-            }
-            window.onload = function(){
-    // Fonction d'initialisation qui s'exécute lorsque le DOM est chargé
-    initMap();
-            };
-        </script>     
+  <svg id="svg" width="700", height="700"></svg>
+  </div>
+  <script src="/js/main.js"></script>
+</body>
     </body>
 </html>

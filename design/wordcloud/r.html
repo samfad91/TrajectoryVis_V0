@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>worldCloud</title>
+</head>
+<body>
+<h3> wordcloud with R </h3>
+<p> // Install the packages </p>
+<p>Install.package("twitteR")</p>
+<p>Install.package("RCurl")</p>
+<p>Install.package("tm")</p>
+<p>Install.package("worldcloud")</p>
+<p>require(twitteR)</p>
+<p>require(RCurl)</p>
+<p>require(tm)</p>
+<p>require(worldcloud)</p>
+<p></p>
+<p> // get the keys from your twitter developer account </p>
+<p>consumer_key <- 'your key'</p>
+<p>consumer_secret <-'your secret'</p>
+<p>access_token <- 'your access token'</p>
+<p>access_secret <- 'your access secret'</p>
+<p></p>
+<p> // authentication </p>
+<p>setup_twitter_oauth(consumer_key, consumer_secret, access_token,access_secret)</p>
+<p></p>
+<p> // get the data </p>
+<p>covidearth <- searchTwitter('covid19', n=10000, resultatType="recent")</p>
+<p></p>
+<p> // process the data (create a corpus, remove punctuation marks, numbers ...) </p>
+<p>covidearth_text <- sapply(covidearth, function(x) x$getText())</p>
+<p>covid_corpus <- Corpus(VectorSource(covidearth_text))</p>
+<p>covid_clean <- tm_map(covid_corpus, removePunctuation)</p>
+<p>covid_clean <- tm_map(covid_clean, content_transformer(tolower))</p>
+<p>covid_clean <- tm_map(covid_clean, removeWords, stopwords("english"))</p>
+<p>covid_clean <- tm_map(covid_clean,removeNumbers)</p>
+<p>covid_clean <- tm_map(covid_clean,stripWhitespace)</p>
+<p>covid_clean <- tm_map(covid_clean,removeWords, c("covid19","corona"))</p>
+
+<p></p>
+<p> // display your worldcloud </p>
+<p>worldcloud(covid_clean)</p>
+<h3> example </h3>
+<h5> example with the tweets of covid19 and corona </h5>
+<p> we can notice that the words virus, amp, and world are the most used </p>
+<img src="/img/word1.png">
+
+
+
+</body>
+</html>
