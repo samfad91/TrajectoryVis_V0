@@ -11,10 +11,10 @@ TrajectoryVis is a generic trajectory visualization tool to represent social net
 Information visualization, Spatio-temporal visualization,Trajectory visualization, Social network data
 
 
-Getting the source code
+**Getting the source code**
 
 **Requirements**:
-●	liveServer of visual studio code (VS)
+liveServer of visual studio code (VS)
 
 **Deployment**:
 
@@ -31,5 +31,5 @@ trajectoryvis/index.html
 4.	Lunch the VS then click to  "Go Live"  from index.html
 5.	A broser will be appear with trajecvis visualization
 
-**Licence**
+**Licence**:
 Attribution-NonCommercial-ShareAlike 4.0 International
