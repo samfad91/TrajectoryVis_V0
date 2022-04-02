@@ -6,7 +6,7 @@
 
 		var svg = d3.select("#svg").append("g").attr("class","container");
 		//load data file
-		d3.csv("https://raw.githubusercontent.com/youyou15/data/master/data1.csv", function(error, data){
+		d3.csv("https://raw.githubusercontent.com/MORAKEB/data/master/data1.csv", function(error, data){
 			od = d3.layout.odmap({
 				width:550,
 				height:550,

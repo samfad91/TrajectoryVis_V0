@@ -21,7 +21,7 @@ var line = d3.line()
 var node,
     link;
 
-d3.json("https://raw.githubusercontent.com/youyou15/data/master/00.07.2020.json").then(function (data) {
+d3.json("https://raw.githubusercontent.com/MORAKEB/data/master/00.07.2020.json").then(function (data) {
     addParentNode(data);
     var root = stratify(data);
     cluster(root);

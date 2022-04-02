@@ -1,0 +1,164 @@
+[
+{
+  "name": "main.a.canada",
+  "size": 3938,
+  "imports": ["main.b.Mexique","main.c.USA","main.l.japan","main.c.USA","main.m.Albanie","main.p.France","main.q.Italie","main.t.Venezuela","main.u.Iran"]
+}, {
+  "name": "main.b.Mexique",
+  "size": 3938,
+  "imports": ["main.c.USA","main.t.Venezuela","main.h.Espagne","main.p.France"]
+}, {
+  "name": "main.c.USA",
+  "size": 3938,
+  "imports": ["main.d.équateur","main.c.USA","main.e.Nigeria","main.c.USA","main.f.Allemagne","main.a.canada","main.g.Australie","main.h.Espagne","main.i.Inde","main.l.japan","main.m.Albanie","main.p.France","main.q.Italie","main.o.Malaisie","main.u.Iran"]
+}, {
+  "name": "main.d.équateur",
+  "size": 3938,
+  "imports": ["main.e.Nigeria"]
+}, {
+  "name": "main.e.Nigeria",
+  "size": 3938,
+  "imports": ["main.f.Allemagne","main.c.USA","main.l.japan"]
+}, {
+  "name": "main.f.Allemagne",
+  "size": 3938,
+  "imports": ["main.g.Australie","main.h.Espagne"]
+}, {
+  "name": "main.g.Australie",
+  "size": 3938,
+  "imports": ["main.h.Espagne"]
+}, {
+  "name": "main.h.Espagne",
+  "size": 3938,
+  "imports": ["main.i.Inde","main.n.Sri_Lanka","main.c.USA","main.t.Venezuela","main.j1.Corée_du_Nord","main.m1.Royaume_uni"]
+}, {
+  "name": "main.i.Inde",
+  "size": 3938,
+  "imports": ["main.j.maroc"]
+}, {
+  "name": "main.j.maroc",
+  "size": 3938,
+  "imports": ["main.k.suisse"]
+}, {
+  "name": "main.k.suisse",
+  "size": 3938,
+  "imports": ["main.l.japan","main.a.canada","main.i1.Thailande"]
+}, {
+  "name": "main.l.japan",
+  "size": 3938,
+  "imports": ["main.m.Albanie","main.c.USA"]
+}, {
+  "name": "main.m.Albanie",
+  "size": 3938,
+  "imports": ["main.a.canada"]
+}, {
+  "name": "main.n.Sri_Lanka",
+  "size": 3938,
+  "imports": ["main.o.Malaisie"]
+}, {
+  "name": "main.o.Malaisie",
+  "size": 3938,
+  "imports": ["main.p.France","main.c.USA"]
+}, {
+  "name": "main.p.France",
+  "size": 3938,
+  "imports": ["main.q.Italie","main.s.Belgique","main.h1.chine"]
+}, {
+  "name": "main.q.Italie",
+  "size": 3938,
+  "imports": ["main.c.USA","main.r.South_Africa"]
+}, {
+  "name": "main.r.South_Africa",
+  "size": 3938,
+  "imports": ["main.c.USA","main.s.Belgique"]
+}, {
+  "name": "main.s.Belgique",
+  "size": 3938,
+  "imports": ["main.c.USA","main.t.Venezuela"]
+}, {
+  "name": "main.t.Venezuela",
+  "size": 3938,    
+  "imports": ["main.u.Iran"]
+}, {
+  "name": "main.u.Iran",
+  "size": 3938,    
+  "imports": ["main.v.Abu_Dhabi"]
+}, {
+  "name": "main.v.Abu_Dhabi",
+  "size": 3938,    
+  "imports": ["main.p.France"]
+}, {
+  "name": "main.w.Senegal",
+  "size": 3938,    
+  "imports": ["main.y.Turquie"]
+}, {
+  "name": "main.x.Kenya",
+  "size": 3938,    
+  "imports": ["main.c1.Cuba"]
+}, {
+  "name": "main.y.Turquie",
+  "size": 3938,    
+  "imports": ["main.i.Inde"]
+}, {
+  "name": "main.z.Autriche",
+  "size": 3938,    
+  "imports": ["main.c.USA"]
+}, {
+  "name": "main.a1.Finlande",
+  "size": 3938,
+  "imports": ["main.x.Kenya"]
+}, {
+  "name": "main.b1.Guatemala",
+  "size": 3938,
+  "imports": ["main.i.Inde"]
+}, {
+  "name": "main.c1.Cuba",
+  "size": 3938,    
+  "imports": ["main.f1.Bolivie"]
+}, {
+  "name": "main.d1.Chili",
+  "size": 3938,    
+  "imports": ["main.m1.Royaume_uni"]
+}, {
+  "name": "main.e1.Argentine",
+  "size": 3938,
+  "imports": ["main.c.USA"]
+}, {
+  "name": "main.f1.Bolivie",
+  "size": 3938,
+  "imports": ["main.z.Autriche"]
+}, {
+  "name": "main.g1.Nicaragua",
+  "size": 3938,
+  "imports": ["main.n1.Brésil"]
+}, {
+  "name": "main.h1.chine",
+  "size": 3938,
+  "imports": ["main.c.USA"]
+}, {
+  "name": "main.i1.Thailande",
+  "size": 3938,
+  "imports": ["main.m1.Royaume_uni"]
+}, {
+  "name": "main.j1.Corée_du_Nord",
+  "size": 3938,
+  "imports": ["main.b.Mexique"]
+}, {
+  "name": "main.k1.Indonésie",
+  "size": 3938,
+  "imports": ["main.l1.pakistan"]
+}, {
+  "name": "main.l1.pakistan",
+  "size": 3938,
+  "imports": ["main.h.Espagne"]
+}, {
+  "name": "main.m1.Royaume_uni",
+  "size": 3938,
+  "imports": ["main.h.Espagne","main.a1.Finlande"]
+},
+ {
+  "name": "main.n1.Brésil",
+  "size": 3938,
+  "imports": ["main.o.Malaisie"]
+}
+]
