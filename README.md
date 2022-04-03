@@ -19,7 +19,7 @@ liveServer of visual studio code (VS)
 **Deployment**:
 
 1. Install VS
-2. Intsall Liveserver
+2. Install Liveserver
 
 2.	Clone this repository:
 $ sudo git clone https://github.com/samfad91/TrajectoryVis_V0.git
@@ -29,7 +29,7 @@ $ sudo git clone https://github.com/samfad91/TrajectoryVis_V0.git
 trajectoryvis/index.html
 
 4.	Lunch the VS then click to  "Go Live"  from index.html
-5.	A broser will be appear with trajecvis visualization
+5.	A brwoser will be appear with trajecvis visualization
 
 **Licence**:
 Attribution-NonCommercial-ShareAlike 4.0 International
