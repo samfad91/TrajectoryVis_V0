@@ -29,7 +29,7 @@ $ sudo git clone https://github.com/samfad91/TrajectoryVis_V0.git
 trajectoryvis/index.html
 
 4.	Lunch the VS then click to  "Go Live"  from index.html
-5.	A brwoser will be appear with trajecvis visualization
+5.	A browser will be appear with trajecvis visualization
 
 **Licence**:
 Attribution-NonCommercial-ShareAlike 4.0 International
